@@ -20,7 +20,18 @@ html,body{max-width:100%;overflow-x:hidden}
   --blue:#5a8fd4;--blue-bg:#080f1a;--blue-border:#0f2040;
   --r:8px;--rl:14px;
 }
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;font-size:14px}
+html.theme-gold{--accent:#d4a843;--accent2:#e8c06a;--accent-bg:#1e1608;--accent-border:#3a2d0a;--accent-rgb:212,168,67}
+html.theme-red {--accent:#d45c5c;--accent2:#e87a7a;--accent-bg:#1e0808;--accent-border:#3a1515;--accent-rgb:212,92,92}
+html.theme-green{--accent:#5aab7a;--accent2:#74c494;--accent-bg:#081a10;--accent-border:#0f3a1e;--accent-rgb:90,171,122}
+html.theme-blue{--accent:#5a8fd4;--accent2:#74a8e8;--accent-bg:#080f1a;--accent-border:#0f2040;--accent-rgb:90,143,212}
+.accent-swatches{display:flex;gap:8px;margin-top:8px}
+.accent-swatch{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s;padding:0}
+.accent-swatch:hover{transform:scale(1.15)}
+.accent-swatch.active{border-color:var(--text)}
+.accent-swatch-gold{background:#d4a843}
+.accent-swatch-red{background:#d45c5c}
+.accent-swatch-green{background:#5aab7a}
+.accent-swatch-blue{background:#5a8fd4};background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;font-size:14px}
 /* EMPLOYEE COLORS */
 .emp-Mike  {--ec:#e07a5f;--eb:rgba(224,122,95,0.15)}
 .emp-Theo  {--ec:#81b29a;--eb:rgba(129,178,154,0.15)}
@@ -679,6 +690,43 @@ input:focus,select:focus{outline:none;border-color:var(--accent)}
   .shift-editor-grid{grid-template-columns:1fr 1fr!important}
   .shift-editor-grid .btn{grid-column:1/-1}
 }
+/* ── ONBOARDING WIZARD ───────────────────────────────────────────────── */
+#wizard-screen{position:fixed;inset:0;z-index:8500;background:var(--bg);display:none;align-items:center;justify-content:center;padding:24px;background-image:radial-gradient(ellipse at 50% 30%,rgba(212,168,67,.06) 0%,transparent 60%)}
+#wizard-screen.active{display:flex}
+.wiz-box{width:100%;max-width:420px}
+.wiz-logo{font-family:'DM Mono',monospace;font-size:18px;letter-spacing:.18em;color:var(--accent);margin-bottom:24px}
+.wiz-steps{display:flex;gap:8px;align-items:center;margin-bottom:28px}
+.wiz-dot{width:8px;height:8px;border-radius:50%;background:var(--surface3);flex-shrink:0;transition:all .2s}
+.wiz-dot.done{background:var(--accent);opacity:.5}
+.wiz-dot.active{background:var(--accent);width:20px;border-radius:4px}
+.wiz-step-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;margin-left:4px}
+.wiz-title{font-size:20px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.wiz-sub{font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.6}
+.wiz-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.wiz-field label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase}
+.wiz-field input,.wiz-field select{padding:13px 14px;font-size:15px}
+.wiz-actions{display:flex;gap:10px;margin-top:24px}
+.wiz-btn-primary{flex:1;padding:14px;background:var(--accent);color:#1a0e00;border:none;border-radius:var(--r);font-size:15px;font-weight:600;font-family:'Sora',sans-serif;cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.wiz-btn-primary:hover{background:var(--accent2)}
+.wiz-btn-primary:disabled{opacity:.4;cursor:not-allowed}
+.wiz-btn-back{padding:14px 20px;background:transparent;color:var(--text2);border:1px solid var(--border2);border-radius:var(--r);font-size:15px;font-family:'Sora',sans-serif;cursor:pointer;transition:all .15s}
+.wiz-btn-back:hover{color:var(--text);border-color:var(--text2)}
+.wiz-err{background:var(--red-bg);border:1px solid var(--red-border);border-radius:var(--r);padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--red);margin-bottom:14px;display:none}
+.wiz-err.show{display:block}
+.wiz-info-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--rl);padding:4px 0;margin-bottom:16px}
+.wiz-info-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border)}
+.wiz-info-row:last-child{border-bottom:none}
+.wiz-info-key{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:.06em}
+.wiz-info-val{font-family:'DM Mono',monospace;font-size:12px;color:var(--text)}
+.wiz-pin-row{display:flex;gap:14px;justify-content:center;padding:18px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r);cursor:pointer;margin-bottom:6px}
+.wiz-pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border2);background:transparent;transition:all .15s}
+.wiz-pin-dot.filled{background:var(--accent);border-color:var(--accent);box-shadow:0 0 8px rgba(var(--accent-rgb),.4)}
+.wiz-done-icon{font-size:52px;text-align:center;margin-bottom:16px}
+.wiz-summary{background:var(--surface2);border:1px solid var(--border);border-radius:var(--rl);padding:4px 0;margin-bottom:24px}
+.wiz-summary-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border)}
+.wiz-summary-row:last-child{border-bottom:none}
+.wiz-summary-key{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em}
+.wiz-summary-val{font-size:14px;font-weight:500;color:var(--text)}
 </style>
 </head>
 <body>
@@ -797,6 +845,11 @@ input:focus,select:focus{outline:none;border-color:var(--accent)}
       <div class="upgrade-ok" id="upgrade-ok">✓ You're on the list — we'll reach out when Pro is live.</div>
     </div>
   </div>
+</div>
+
+<!-- ══ ONBOARDING WIZARD ══ -->
+<div id="wizard-screen">
+  <div class="wiz-box" id="wiz-box"></div>
 </div>
 
 <div class="app">
@@ -1286,7 +1339,15 @@ input:focus,select:focus{outline:none;border-color:var(--accent)}
       <div id="settings-plan-body"></div>
     </div>
     <div class="card">
-      <div class="card-head"><span class="card-title">Pay Period Settings</span></div>
+      <div class="card-head"><span class="card-title">Accent Color</span></div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);margin-bottom:6px;letter-spacing:.04em">Choose your interface color</div>
+      <div class="accent-swatches">
+        <button class="accent-swatch accent-swatch-gold"  title="Gold"  onclick="setAccentPreset('gold')"  id="swatch-gold"></button>
+        <button class="accent-swatch accent-swatch-red"   title="Red"   onclick="setAccentPreset('red')"   id="swatch-red"></button>
+        <button class="accent-swatch accent-swatch-green" title="Green" onclick="setAccentPreset('green')" id="swatch-green"></button>
+        <button class="accent-swatch accent-swatch-blue"  title="Blue"  onclick="setAccentPreset('blue')"  id="swatch-blue"></button>
+      </div>
+    </div>
       <div class="form-grid">
         <div class="fg">
           <label class="lbl">Pay Period Anchor (first Monday of first period)</label>
@@ -1347,10 +1408,11 @@ const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsIn
 
 // ── AUTH STATE ───────────────────────────────────────────────────────────────
 let currentSession      = null;  // Supabase session object (has .access_token)
-let currentRestaurantId = null;  // UUID from r9k_restaurants
+let currentRestaurantId = null;  // UUID from trn_restaurants
 let currentRestaurantName = '';
 let currentTimezone     = 'America/Toronto';
 let currentPlan         = 'free'; // 'free' | 'pro' | 'suspended'
+let currentAccentPreset = 'gold'; // 'gold' | 'red' | 'green' | 'blue'
 const FREE_EMP_LIMIT    = 3;
 
 function sbToken() { return currentSession ? currentSession.access_token : SB_ANON; }
@@ -1436,7 +1498,7 @@ async function doSignOut() {
   try {
     if(currentSession?.access_token) await fetch(SB_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SB_ANON,'Authorization':'Bearer '+currentSession.access_token}});
   } catch(e){}
-  currentSession=null;currentRestaurantId=null;currentRestaurantName='';currentTimezone='America/Toronto';currentPlan='free';
+  currentSession=null;currentRestaurantId=null;currentRestaurantName='';currentTimezone='America/Toronto';currentPlan='free';currentAccentPreset='gold';
   document.getElementById('suspended-banner').classList.remove('show');
   employees=[];shifts=[];punches=[];corrections=[];tips=[];salesData=[];closedPeriods=[];
   localStorage.clear();
@@ -1451,21 +1513,21 @@ async function updateRestaurantName(name) {
   if(!name||!currentSession)return;
   const email=currentSession.user?.email||currentSession.email||'';
   try {
-    await fetch(SB_URL+'/rest/v1/r9k_restaurants?owner_email=eq.'+encodeURIComponent(email),{method:'PATCH',headers:{'apikey':SB_ANON,'Authorization':'Bearer '+currentSession.access_token,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({name})});
+    await fetch(SB_URL+'/rest/v1/trn_restaurants?owner_email=eq.'+encodeURIComponent(email),{method:'PATCH',headers:{'apikey':SB_ANON,'Authorization':'Bearer '+currentSession.access_token,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({name})});
   } catch(e){console.warn('Could not update restaurant name:',e.message);}
 }
 
 // ── BOOT: resolve restaurant_id then launch app ──────────────────────────────
 async function bootApp() {
   try {
-    const rows=await sbFetch('r9k_restaurants?select=id,name,plan,timezone,anchor_date');
+    const rows=await sbFetch('trn_restaurants?select=id,name,plan,timezone,anchor_date');
     if(!rows||!rows.length){
       await new Promise(r=>setTimeout(r,800));
-      const retry=await sbFetch('r9k_restaurants?select=id,name,plan,timezone,anchor_date');
+      const retry=await sbFetch('trn_restaurants?select=id,name,plan,timezone,anchor_date');
       if(!retry||!retry.length){setAuthErr('login','Account setup incomplete — try again.');return;}
-      currentRestaurantId=retry[0].id;currentRestaurantName=retry[0].name||'';currentTimezone=retry[0].timezone||'America/Toronto';currentPlan=retry[0].plan||'free';
+      currentRestaurantId=retry[0].id;currentRestaurantName=retry[0].name||'';currentTimezone=retry[0].timezone||'America/Toronto';currentPlan='pro'; // DEMO — all features unlocked
     } else {
-      currentRestaurantId=rows[0].id;currentRestaurantName=rows[0].name||'';currentTimezone=rows[0].timezone||'America/Toronto';currentPlan=rows[0].plan||'free';
+      currentRestaurantId=rows[0].id;currentRestaurantName=rows[0].name||'';currentTimezone=rows[0].timezone||'America/Toronto';currentPlan='pro'; // DEMO — all features unlocked
     }
     const email=currentSession.user?.email||currentSession.email||'';
     const userInfo=document.getElementById('nav-user-info');
@@ -1473,12 +1535,20 @@ async function bootApp() {
     if(userInfo)userInfo.style.display='flex';
     if(userEmail)userEmail.textContent=(currentRestaurantName?currentRestaurantName+' · ':'')+email;
     document.getElementById('auth-screen').style.display='none';
-    const isNewAccount=!localStorage.getItem('r9k_booted_'+currentRestaurantId);
-    if(isNewAccount){employees=[];shifts=[];punches=[];corrections=[];tips=[];salesData=[];closedPeriods=[];save();saveTips();saveCorrections();saveSales();localStorage.setItem('r9k_booted_'+currentRestaurantId,'1');}
+    const isNewAccount = !localStorage.getItem('trn_booted_' + currentRestaurantId);
+    if (isNewAccount) {
+      employees=[];shifts=[];punches=[];corrections=[];tips=[];salesData=[];closedPeriods=[];
+      save();saveTips();saveCorrections();saveSales();
+      localStorage.setItem('trn_booted_' + currentRestaurantId, '1');
+    }
     await pullAll();
     applyPlanEnforcement();
-    refreshSelects();renderToday();
-    try{localStorage.setItem('r9k_session',JSON.stringify(currentSession));}catch(e){}
+    applyBranding();
+    refreshSelects(); renderToday();
+    try { localStorage.setItem('trn_session', JSON.stringify(currentSession)); } catch(e) {}
+    // Show wizard for new accounts that haven't completed it
+    const wizDone = localStorage.getItem('trn_wiz_done_' + currentRestaurantId);
+    if (!wizDone) { showWizard(); }
   } catch(e){
     console.error('bootApp failed:',e);
     setAuthErr('login','Could not load your account — check your connection.');
@@ -1488,12 +1558,15 @@ async function bootApp() {
 // ── SESSION RESTORE ──────────────────────────────────────────────────────────
 async function tryRestoreSession() {
   try {
-    const raw=localStorage.getItem('r9k_session');
+    const raw=localStorage.getItem('trn_session');
     if(!raw){showAuthScreen();return;}
     const sess=JSON.parse(raw);
     if(!sess?.access_token){showAuthScreen();return;}
+    // Fast restore accent while we wait for pullAll
+    const savedAccent = localStorage.getItem('trn_accent');
+    if (savedAccent) { currentAccentPreset = savedAccent; applyBranding(); }
     const res=await fetch(SB_URL+'/auth/v1/user',{headers:{'apikey':SB_ANON,'Authorization':'Bearer '+sess.access_token}});
-    if(!res.ok){localStorage.removeItem('r9k_session');showAuthScreen();return;}
+    if(!res.ok){localStorage.removeItem('trn_session');showAuthScreen();return;}
     currentSession=sess;await bootApp();
   } catch(e){showAuthScreen();}
 }
@@ -1517,7 +1590,7 @@ function setSyncStatus(s) {
 async function pushPunch(rec) {
   try {
     setSyncStatus('syncing');
-    await sbFetch('r9k_punches', {
+    await sbFetch('trn_punches', {
       method: 'POST',
       prefer: 'resolution=merge-duplicates,return=representation',
       headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' },
@@ -1552,7 +1625,7 @@ async function pushEmployees() {
   try {
     setSyncStatus('syncing');
     for (const emp of employees) {
-      await sbFetch('r9k_employees', {
+      await sbFetch('trn_employees', {
         method: 'POST',
         headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' },
         body: JSON.stringify({ id: emp.id, restaurant_id: currentRestaurantId, name: emp.name, pin: emp.pin, rate: emp.rate, tips_eligible: emp.tipsEligible !== false, updated_at: new Date().toISOString() })
@@ -1575,7 +1648,7 @@ async function pushShifts() {
     }));
     // Upsert in batches of 50
     for (let i=0; i<rows.length; i+=50) {
-      await sbFetch('r9k_shifts', {
+      await sbFetch('trn_shifts', {
         method: 'POST',
         headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' },
         body: JSON.stringify(rows.slice(i, i+50))
@@ -1593,21 +1666,21 @@ async function pullAll() {
     setSyncStatus('syncing');
 
     // Employees
-    const remoteEmps = await sbFetch('r9k_employees?select=*&order=name&restaurant_id=eq.'+rid);
+    const remoteEmps = await sbFetch('trn_employees?select=*&order=name&restaurant_id=eq.'+rid);
     if (remoteEmps && remoteEmps.length) {
       employees = remoteEmps.map(e => ({ id:e.id, name:e.name, pin:e.pin, rate:e.rate, tipsEligible:e.tips_eligible!==false }));
-      localStorage.setItem('r9k_emp', JSON.stringify(employees));
+      localStorage.setItem('trn_emp', JSON.stringify(employees));
     }
 
     // Shifts
-    const remoteShifts = await sbFetch('r9k_shifts?select=*&order=date&restaurant_id=eq.'+rid);
+    const remoteShifts = await sbFetch('trn_shifts?select=*&order=date&restaurant_id=eq.'+rid);
     if (remoteShifts && remoteShifts.length) {
       shifts = remoteShifts.map(s => ({ date:s.date, employee:s.employee, start:s.start_time, end:s.end_time }));
-      localStorage.setItem('r9k_shifts', JSON.stringify(shifts));
+      localStorage.setItem('trn_shifts', JSON.stringify(shifts));
     }
 
     // Punches
-    const remotePunches = await sbFetch('r9k_punches?select=*&order=date.desc,punch_in.desc&restaurant_id=eq.'+rid);
+    const remotePunches = await sbFetch('trn_punches?select=*&order=date.desc,punch_in.desc&restaurant_id=eq.'+rid);
     if (remotePunches && remotePunches.length) {
       punches = remotePunches.map(p => ({
         id: p.id, empId: p.emp_id, empName: p.emp_name,
@@ -1617,48 +1690,48 @@ async function pullAll() {
         schedStart: p.sched_start, schedEnd: p.sched_end,
         rate: p.rate, note: p.note||'', flags: p.flags||[]
       }));
-      localStorage.setItem('r9k_punches', JSON.stringify(punches));
+      localStorage.setItem('trn_punches', JSON.stringify(punches));
     }
 
     // Closed periods
-    const remoteClosed = await sbFetch('r9k_closed_periods?select=*&order=period_from.desc&restaurant_id=eq.'+rid);
+    const remoteClosed = await sbFetch('trn_closed_periods?select=*&order=period_from.desc&restaurant_id=eq.'+rid);
     if (remoteClosed && remoteClosed.length) {
       closedPeriods = remoteClosed.map(c => ({
         from: c.period_from, to: c.period_to, label: c.label,
         closedAt: c.closed_at, summary: c.summary||{},
         totalHrs: c.total_hrs, totalPay: c.total_pay
       }));
-      localStorage.setItem('r9k_closed', JSON.stringify(closedPeriods));
+      localStorage.setItem('trn_closed', JSON.stringify(closedPeriods));
     }
 
     // Tips
     try {
-      const remoteTips = await sbFetch('r9k_tips?select=*&order=date.desc&restaurant_id=eq.'+rid);
+      const remoteTips = await sbFetch('trn_tips?select=*&order=date.desc&restaurant_id=eq.'+rid);
       if (remoteTips && remoteTips.length) {
         tips = remoteTips.map(t => ({
           id: t.id, date: t.date, totalTips: t.total_tips,
           totalHrs: t.total_hrs, ratePerHr: t.rate_per_hr,
           split: t.split||[], createdAt: t.created_at
         }));
-        localStorage.setItem('r9k_tips', JSON.stringify(tips));
+        localStorage.setItem('trn_tips', JSON.stringify(tips));
       }
     } catch(e) {}
 
     // Sales
     try {
-      const remoteSales = await sbFetch('r9k_sales?select=*&order=date.desc&restaurant_id=eq.'+rid);
+      const remoteSales = await sbFetch('trn_sales?select=*&order=date.desc&restaurant_id=eq.'+rid);
       if (remoteSales && remoteSales.length) {
         salesData = remoteSales.map(s => ({
           date: s.date, netSales: s.net_sales, grossSales: s.gross_sales,
           taxes: s.taxes, tips: s.tips, amountCollected: s.amount_collected
         }));
-        localStorage.setItem('r9k_sales', JSON.stringify(salesData));
+        localStorage.setItem('trn_sales', JSON.stringify(salesData));
       }
     } catch(e) {}
 
     // Corrections
     try {
-      const remoteCr = await sbFetch('r9k_corrections?select=*&order=submitted_at.desc&restaurant_id=eq.'+rid);
+      const remoteCr = await sbFetch('trn_corrections?select=*&order=submitted_at.desc&restaurant_id=eq.'+rid);
       if (remoteCr && remoteCr.length) {
         corrections = remoteCr.map(c => ({
           id: parseInt(c.id)||c.id, empId: c.emp_id, empName: c.emp_name,
@@ -1666,18 +1739,23 @@ async function pullAll() {
           reason: c.reason, status: c.status,
           submittedAt: c.submitted_at, resolvedAt: c.resolved_at
         }));
-        localStorage.setItem('r9k_corrections', JSON.stringify(corrections));
+        localStorage.setItem('trn_corrections', JSON.stringify(corrections));
         updateCorrectionsBadge();
       }
     } catch(e) {}
 
     // Settings (anchor)
-    const remoteSettings = await sbFetch('r9k_settings?select=*&restaurant_id=eq.'+rid);
+    const remoteSettings = await sbFetch('trn_settings?select=*&restaurant_id=eq.'+rid);
     if (remoteSettings) {
       const anchorSetting = remoteSettings.find(s => s.key === 'pay_anchor');
       if (anchorSetting) {
         payAnchor = anchorSetting.value;
-        localStorage.setItem('r9k_anchor', payAnchor);
+        localStorage.setItem('trn_anchor', payAnchor);
+      }
+      const presetSetting = remoteSettings.find(s => s.key === 'accent_preset');
+      if (presetSetting) {
+        currentAccentPreset = presetSetting.value || 'gold';
+        applyBranding();
       }
     }
 
@@ -1694,7 +1772,7 @@ async function pullAll() {
 // ── PUSH: closed period ──
 async function pushClosedPeriod(cp) {
   try {
-    await sbFetch('r9k_closed_periods', {
+    await sbFetch('trn_closed_periods', {
       method: 'POST',
       headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' },
       body: JSON.stringify({
@@ -1711,7 +1789,7 @@ async function pushClosedPeriod(cp) {
 // ── PUSH: anchor setting ──
 async function pushAnchor(val) {
   try {
-    await sbFetch('r9k_settings', {
+    await sbFetch('trn_settings', {
       method: 'POST',
       headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' },
       body: JSON.stringify({ restaurant_id: currentRestaurantId, key: 'pay_anchor', value: val })
@@ -1720,7 +1798,7 @@ async function pushAnchor(val) {
 }
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
-let employees = JSON.parse(localStorage.getItem('r9k_emp')||'null')||[
+let employees = JSON.parse(localStorage.getItem('trn_emp')||'null')||[
   {id:'theo',name:'Theo',pin:'1111',rate:20},
   {id:'paul',name:'Paul',pin:'2222',rate:18},
   {id:'kevin',name:'Kevin',pin:'3333',rate:30},
@@ -1728,12 +1806,12 @@ let employees = JSON.parse(localStorage.getItem('r9k_emp')||'null')||[
   {id:'mike',name:'Mike',pin:'5555',rate:40},
 ];
 
-let shifts = JSON.parse(localStorage.getItem('r9k_shifts')||'null')||[{"date":"2026-06-03","employee":"Mike","start":"13:00","end":"19:00"},{"date":"2026-06-04","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-06-04","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-04","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-05","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-06-05","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-05","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-06","employee":"Kevin","start":"11:00","end":"22:00"},{"date":"2026-06-06","employee":"Mike","start":"09:00","end":"22:00"},{"date":"2026-06-06","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-07","employee":"Kevin","start":"11:00","end":"22:00"},{"date":"2026-06-07","employee":"Mike","start":"08:00","end":"22:00"},{"date":"2026-06-07","employee":"Theo","start":"10:00","end":"22:00"},{"date":"2026-06-10","employee":"Mike","start":"13:00","end":"19:00"},{"date":"2026-06-10","employee":"Theo","start":"14:00","end":"19:00"},{"date":"2026-06-11","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-06-11","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-12","employee":"Mike","start":"13:00","end":"18:00"},{"date":"2026-06-12","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-12","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-13","employee":"Mike","start":"10:00","end":"22:00"},{"date":"2026-06-13","employee":"Paul","start":"11:00","end":"15:00"},{"date":"2026-06-13","employee":"Theo","start":"15:00","end":"22:00"},{"date":"2026-06-14","employee":"Mike","start":"10:00","end":"22:00"},{"date":"2026-06-14","employee":"Paul","start":"11:00","end":"15:00"},{"date":"2026-06-14","employee":"Theo","start":"15:00","end":"22:00"},{"date":"2026-06-15","employee":"Mike","start":"09:00","end":"21:00"},{"date":"2026-06-16","employee":"Mike","start":"09:00","end":"21:00"},{"date":"2026-06-17","employee":"Mike","start":"09:00","end":"21:00"},{"date":"2026-06-17","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-06-18","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-06-18","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-06-18","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-19","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-06-19","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-06-19","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-20","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-06-20","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-06-20","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-21","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-06-21","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-06-21","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-24","employee":"Mike","start":"09:00","end":"23:00"},{"date":"2026-06-24","employee":"Theo","start":"13:00","end":"22:00"},{"date":"2026-06-25","employee":"Mike","start":"09:00","end":"23:00"},{"date":"2026-06-25","employee":"Paul","start":"14:00","end":"22:00"},{"date":"2026-06-25","employee":"Theo","start":"13:00","end":"22:00"},{"date":"2026-06-26","employee":"Mike","start":"09:00","end":"23:00"},{"date":"2026-06-26","employee":"Paul","start":"14:00","end":"22:00"},{"date":"2026-06-26","employee":"Theo","start":"13:00","end":"22:00"},{"date":"2026-06-27","employee":"Kevin","start":"11:00","end":"17:00"},{"date":"2026-06-27","employee":"Mike","start":"09:00","end":"23:00"},{"date":"2026-06-27","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-27","employee":"Theo","start":"10:00","end":"22:00"},{"date":"2026-06-28","employee":"Kevin","start":"11:00","end":"17:00"},{"date":"2026-06-28","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-28","employee":"Theo","start":"10:00","end":"22:00"},{"date":"2026-07-01","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-07-01","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-01","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-02","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-07-02","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-02","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-03","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-07-03","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-04","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-04","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-04","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-05","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-05","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-05","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-08","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-08","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-09","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-07-09","employee":"Paul","start":"16:00","end":"21:00"},{"date":"2026-07-09","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-10","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-10","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-11","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-11","employee":"Paul","start":"15:00","end":"21:00"},{"date":"2026-07-11","employee":"Theo","start":"13:00","end":"21:00"},{"date":"2026-07-12","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-12","employee":"Paul","start":"15:00","end":"21:00"},{"date":"2026-07-12","employee":"Theo","start":"13:00","end":"21:00"},{"date":"2026-07-15","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-15","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-16","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-16","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-17","employee":"Mike","start":"11:00","end":"22:00"},{"date":"2026-07-17","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-07-17","employee":"Theo","start":"08:00","end":"22:00"},{"date":"2026-07-18","employee":"Mike","start":"10:00","end":"22:00"},{"date":"2026-07-18","employee":"Paul","start":"11:00","end":"22:00"},{"date":"2026-07-18","employee":"Theo","start":"08:00","end":"22:00"},{"date":"2026-07-19","employee":"Mike","start":"10:00","end":"22:00"},{"date":"2026-07-19","employee":"Paul","start":"11:00","end":"22:00"},{"date":"2026-07-19","employee":"Theo","start":"08:00","end":"22:00"},{"date":"2026-07-22","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-22","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-23","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-07-23","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-23","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-24","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-07-24","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-25","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-25","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-07-25","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-26","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-26","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-07-26","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-29","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-29","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-30","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-07-30","employee":"Paul","start":"16:00","end":"21:00"},{"date":"2026-07-30","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-31","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-31","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-08-01","employee":"Mike","start":"10:00","end":"18:00"},{"date":"2026-08-01","employee":"Paul","start":"16:00","end":"21:00"},{"date":"2026-08-01","employee":"Theo","start":"13:00","end":"21:00"},{"date":"2026-08-02","employee":"Mike","start":"10:00","end":"18:00"},{"date":"2026-08-02","employee":"Paul","start":"16:00","end":"21:00"},{"date":"2026-08-02","employee":"Theo","start":"13:00","end":"21:00"}];
+let shifts = JSON.parse(localStorage.getItem('trn_shifts')||'null')||[{"date":"2026-06-03","employee":"Mike","start":"13:00","end":"19:00"},{"date":"2026-06-04","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-06-04","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-04","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-05","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-06-05","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-05","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-06","employee":"Kevin","start":"11:00","end":"22:00"},{"date":"2026-06-06","employee":"Mike","start":"09:00","end":"22:00"},{"date":"2026-06-06","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-07","employee":"Kevin","start":"11:00","end":"22:00"},{"date":"2026-06-07","employee":"Mike","start":"08:00","end":"22:00"},{"date":"2026-06-07","employee":"Theo","start":"10:00","end":"22:00"},{"date":"2026-06-10","employee":"Mike","start":"13:00","end":"19:00"},{"date":"2026-06-10","employee":"Theo","start":"14:00","end":"19:00"},{"date":"2026-06-11","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-06-11","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-12","employee":"Mike","start":"13:00","end":"18:00"},{"date":"2026-06-12","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-12","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-13","employee":"Mike","start":"10:00","end":"22:00"},{"date":"2026-06-13","employee":"Paul","start":"11:00","end":"15:00"},{"date":"2026-06-13","employee":"Theo","start":"15:00","end":"22:00"},{"date":"2026-06-14","employee":"Mike","start":"10:00","end":"22:00"},{"date":"2026-06-14","employee":"Paul","start":"11:00","end":"15:00"},{"date":"2026-06-14","employee":"Theo","start":"15:00","end":"22:00"},{"date":"2026-06-15","employee":"Mike","start":"09:00","end":"21:00"},{"date":"2026-06-16","employee":"Mike","start":"09:00","end":"21:00"},{"date":"2026-06-17","employee":"Mike","start":"09:00","end":"21:00"},{"date":"2026-06-17","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-06-18","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-06-18","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-06-18","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-19","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-06-19","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-06-19","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-20","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-06-20","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-06-20","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-21","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-06-21","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-06-21","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-06-24","employee":"Mike","start":"09:00","end":"23:00"},{"date":"2026-06-24","employee":"Theo","start":"13:00","end":"22:00"},{"date":"2026-06-25","employee":"Mike","start":"09:00","end":"23:00"},{"date":"2026-06-25","employee":"Paul","start":"14:00","end":"22:00"},{"date":"2026-06-25","employee":"Theo","start":"13:00","end":"22:00"},{"date":"2026-06-26","employee":"Mike","start":"09:00","end":"23:00"},{"date":"2026-06-26","employee":"Paul","start":"14:00","end":"22:00"},{"date":"2026-06-26","employee":"Theo","start":"13:00","end":"22:00"},{"date":"2026-06-27","employee":"Kevin","start":"11:00","end":"17:00"},{"date":"2026-06-27","employee":"Mike","start":"09:00","end":"23:00"},{"date":"2026-06-27","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-27","employee":"Theo","start":"10:00","end":"22:00"},{"date":"2026-06-28","employee":"Kevin","start":"11:00","end":"17:00"},{"date":"2026-06-28","employee":"Paul","start":"17:00","end":"22:00"},{"date":"2026-06-28","employee":"Theo","start":"10:00","end":"22:00"},{"date":"2026-07-01","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-07-01","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-01","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-02","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-07-02","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-02","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-03","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-07-03","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-04","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-04","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-04","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-05","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-05","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-05","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-08","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-08","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-09","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-07-09","employee":"Paul","start":"16:00","end":"21:00"},{"date":"2026-07-09","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-10","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-10","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-11","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-11","employee":"Paul","start":"15:00","end":"21:00"},{"date":"2026-07-11","employee":"Theo","start":"13:00","end":"21:00"},{"date":"2026-07-12","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-12","employee":"Paul","start":"15:00","end":"21:00"},{"date":"2026-07-12","employee":"Theo","start":"13:00","end":"21:00"},{"date":"2026-07-15","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-15","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-16","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-16","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-17","employee":"Mike","start":"11:00","end":"22:00"},{"date":"2026-07-17","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-07-17","employee":"Theo","start":"08:00","end":"22:00"},{"date":"2026-07-18","employee":"Mike","start":"10:00","end":"22:00"},{"date":"2026-07-18","employee":"Paul","start":"11:00","end":"22:00"},{"date":"2026-07-18","employee":"Theo","start":"08:00","end":"22:00"},{"date":"2026-07-19","employee":"Mike","start":"10:00","end":"22:00"},{"date":"2026-07-19","employee":"Paul","start":"11:00","end":"22:00"},{"date":"2026-07-19","employee":"Theo","start":"08:00","end":"22:00"},{"date":"2026-07-22","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-22","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-23","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-07-23","employee":"Paul","start":"16:00","end":"22:00"},{"date":"2026-07-23","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-24","employee":"Mike","start":"13:00","end":"22:00"},{"date":"2026-07-24","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-25","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-25","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-07-25","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-26","employee":"Mike","start":"10:00","end":"16:00"},{"date":"2026-07-26","employee":"Paul","start":"15:00","end":"22:00"},{"date":"2026-07-26","employee":"Theo","start":"14:00","end":"22:00"},{"date":"2026-07-29","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-29","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-30","employee":"Mike","start":"13:00","end":"17:00"},{"date":"2026-07-30","employee":"Paul","start":"16:00","end":"21:00"},{"date":"2026-07-30","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-07-31","employee":"Mike","start":"13:00","end":"21:00"},{"date":"2026-07-31","employee":"Theo","start":"14:00","end":"21:00"},{"date":"2026-08-01","employee":"Mike","start":"10:00","end":"18:00"},{"date":"2026-08-01","employee":"Paul","start":"16:00","end":"21:00"},{"date":"2026-08-01","employee":"Theo","start":"13:00","end":"21:00"},{"date":"2026-08-02","employee":"Mike","start":"10:00","end":"18:00"},{"date":"2026-08-02","employee":"Paul","start":"16:00","end":"21:00"},{"date":"2026-08-02","employee":"Theo","start":"13:00","end":"21:00"}];
 
-let punches = JSON.parse(localStorage.getItem('r9k_punches')||'[]');
-let corrections = JSON.parse(localStorage.getItem('r9k_corrections')||'[]');
-let tips = JSON.parse(localStorage.getItem('r9k_tips')||'[]');
-let salesData = JSON.parse(localStorage.getItem('r9k_sales')||'[]');
+let punches = JSON.parse(localStorage.getItem('trn_punches')||'[]');
+let corrections = JSON.parse(localStorage.getItem('trn_corrections')||'[]');
+let tips = JSON.parse(localStorage.getItem('trn_tips')||'[]');
+let salesData = JSON.parse(localStorage.getItem('trn_sales')||'[]');
 // salesData: [{date, netSales, grossSales, taxes, tips, amountCollected}]
 let currentPin='', pinReady=false;
 let schedView='day', schedCursor=new Date();
@@ -1745,9 +1823,9 @@ function empColor(name){return EMP_COLORS[name]||'#8a8578';}
 function empBg(name){const c=empColor(name);return c+'26';}
 
 function save(){
-  localStorage.setItem('r9k_emp',JSON.stringify(employees));
-  localStorage.setItem('r9k_shifts',JSON.stringify(shifts));
-  localStorage.setItem('r9k_punches',JSON.stringify(punches));
+  localStorage.setItem('trn_emp',JSON.stringify(employees));
+  localStorage.setItem('trn_shifts',JSON.stringify(shifts));
+  localStorage.setItem('trn_punches',JSON.stringify(punches));
 }
 
 // ── CLOCK ─────────────────────────────────────────────────────────────────────
@@ -2452,7 +2530,7 @@ function removeShift(date,emp){
   save();
   // DELETE from Supabase directly
   const id = date+'_'+emp.toLowerCase();
-  sbFetch('r9k_shifts?id=eq.'+encodeURIComponent(id), {
+  sbFetch('trn_shifts?id=eq.'+encodeURIComponent(id), {
     method:'DELETE', prefer:'', headers:{'Prefer':''}
   }).catch(e=>console.warn('Delete shift failed:',e));
   renderAdminShifts();
@@ -2715,7 +2793,7 @@ function exportPayrollCSV() {
 
 // ── CORRECTION REQUESTS ──────────────────────────────────────────────────────
 function saveCorrections() {
-  localStorage.setItem('r9k_corrections', JSON.stringify(corrections));
+  localStorage.setItem('trn_corrections', JSON.stringify(corrections));
 }
 
 function toggleCorrectionForm() {
@@ -2912,7 +2990,7 @@ function savePunchEdit() {
 // ── PUSH CORRECTION TO SUPABASE ───────────────────────────────────────────────
 async function pushCorrection(cr) {
   try {
-    await sbFetch('r9k_corrections', {
+    await sbFetch('trn_corrections', {
       method: 'POST',
       headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' },
       body: JSON.stringify({
@@ -2927,7 +3005,7 @@ async function pushCorrection(cr) {
 
 // ── SALES / CLOVER IMPORT ────────────────────────────────────────────────────
 function saveSales() {
-  localStorage.setItem('r9k_sales', JSON.stringify(salesData));
+  localStorage.setItem('trn_sales', JSON.stringify(salesData));
 }
 
 function importCloverCSV(file) {
@@ -3196,7 +3274,7 @@ function exportSalesCSV() {
 
 async function pushSalesDay(s) {
   try {
-    await sbFetch('r9k_sales', {
+    await sbFetch('trn_sales', {
       method:'POST',
       headers:{'Prefer':'resolution=merge-duplicates,return=representation'},
       body: JSON.stringify({
@@ -3216,7 +3294,7 @@ async function pushSalesDay(s) {
 // Pull sales in pullAll
 // ── TIPS ─────────────────────────────────────────────────────────────────────
 function saveTips() {
-  localStorage.setItem('r9k_tips', JSON.stringify(tips));
+  localStorage.setItem('trn_tips', JSON.stringify(tips));
 }
 
 let selectedTipDate = null;
@@ -3415,7 +3493,7 @@ function exportTipsCSV() {
 
 async function pushTips(entry) {
   try {
-    await sbFetch('r9k_tips', {
+    await sbFetch('trn_tips', {
       method: 'POST',
       headers: { 'Prefer': 'resolution=merge-duplicates,return=representation' },
       body: JSON.stringify({
@@ -3660,15 +3738,15 @@ setInterval(checkMissedPunches, 60000);
 
 // ── PAY PERIOD ENGINE ────────────────────────────────────────────────────────
 // Default anchor: Monday June 2 2026 (first week of your schedule)
-let payAnchor = localStorage.getItem('r9k_anchor') || '2026-06-02';
-let closedPeriods = JSON.parse(localStorage.getItem('r9k_closed') || '[]');
+let payAnchor = localStorage.getItem('trn_anchor') || '2026-06-02';
+let closedPeriods = JSON.parse(localStorage.getItem('trn_closed') || '[]');
 let viewingPeriodOffset = 0; // 0 = current, -1 = previous, etc.
 
 function saveAnchor() {
   const v = document.getElementById('anchor-date').value;
   if (!v) return;
   payAnchor = v;
-  localStorage.setItem('r9k_anchor', v);
+  localStorage.setItem('trn_anchor', v);
   pushAnchor(v);
   viewingPeriodOffset = 0;
   updateAnchorPreview();
@@ -3734,7 +3812,7 @@ function closePeriod() {
     totalPay: Object.values(byEmp).reduce((s,e)=>s+e.pay,0),
   };
   closedPeriods.push(cp);
-  localStorage.setItem('r9k_closed', JSON.stringify(closedPeriods));
+  localStorage.setItem('trn_closed', JSON.stringify(closedPeriods));
   pushClosedPeriod(cp);
   toast('Period closed ✓', 'ok');
   renderLogs();
@@ -3743,7 +3821,7 @@ function closePeriod() {
 function reopenPeriod(from) {
   if (!confirm('Reopen this period? It will be marked open again.')) return;
   closedPeriods = closedPeriods.filter(c => c.from !== from);
-  localStorage.setItem('r9k_closed', JSON.stringify(closedPeriods));
+  localStorage.setItem('trn_closed', JSON.stringify(closedPeriods));
   renderLogs();
   toast('Period reopened', 'ok');
 }
@@ -3911,7 +3989,7 @@ function exportCSV(){
 
 // ── ADMIN AUTH ────────────────────────────────────────────────────────────────
 let adminUnlocked = false;
-let adminPassword = localStorage.getItem('r9k_adminpw') || 'tournant';
+let adminPassword = localStorage.getItem('trn_adminpw') || 'tournant';
 
 // ── AUTO-LOCK after 5 min inactivity ─────────────────────────────────────────
 let adminLockTimer = null;
@@ -3978,7 +4056,7 @@ function changePassword() {
   if (!np || np.length < 4) { toast('Password must be at least 4 characters', 'err'); return; }
   if (np !== cp) { toast('Passwords do not match', 'err'); return; }
   adminPassword = np;
-  localStorage.setItem('r9k_adminpw', np);
+  localStorage.setItem('trn_adminpw', np);
   document.getElementById('new-pw').value = '';
   document.getElementById('confirm-pw').value = '';
   toast('Password updated', 'ok');
@@ -4051,6 +4129,279 @@ function showAtab(id,btn){
   if(id==='settings') populateSettingsPanel();
   // Init collapsible cards for this tab — wait for dynamic content to render
   setTimeout(() => initCollapsibleCards(id), 150);
+}
+
+// ── ONBOARDING WIZARD ────────────────────────────────────────────────────────
+const WIZ_TOTAL_STEPS = 4;
+const WIZ_STEP_LABELS = ['Restaurant', 'Pay Period', 'First Employee', 'Done'];
+let wizStep = 1;
+let wizPinBuffer = [];
+let wizData = { name: '', timezone: 'America/Montreal', anchorDate: '', empName: '' };
+
+function showWizard() {
+  wizStep = 1;
+  wizPinBuffer = [];
+  wizData = { name: currentRestaurantName || '', timezone: currentTimezone || 'America/Montreal', anchorDate: '', empName: '' };
+  document.getElementById('wizard-screen').classList.add('active');
+  renderWizStep();
+}
+
+function hideWizard() {
+  document.getElementById('wizard-screen').classList.remove('active');
+  localStorage.setItem('trn_wiz_done_' + currentRestaurantId, '1');
+}
+
+function wizHeader() {
+  let dots = '';
+  for (let i = 1; i <= WIZ_TOTAL_STEPS; i++) {
+    if (i < wizStep)       dots += '<div class="wiz-dot done"></div>';
+    else if (i === wizStep) dots += '<div class="wiz-dot active"></div>';
+    else                    dots += '<div class="wiz-dot"></div>';
+  }
+  return `<div class="wiz-logo">TOURNANT</div>
+    <div class="wiz-steps">${dots}
+      <span class="wiz-step-label">Step ${wizStep} of ${WIZ_TOTAL_STEPS} — ${WIZ_STEP_LABELS[wizStep-1]}</span>
+    </div>`;
+}
+
+function wizShowErr(msg) {
+  const el = document.getElementById('wiz-err');
+  if (el) { el.textContent = msg; el.classList.add('show'); }
+}
+
+function wizUpdatePeriodPreview() {
+  const anchor = document.getElementById('wiz-anchor')?.value;
+  if (!anchor) return;
+  const d = new Date(anchor + 'T12:00:00');
+  const end = new Date(d); end.setDate(end.getDate() + 13);
+  const fmt = dt => dt.toLocaleDateString('en-CA', { month:'short', day:'numeric', year:'numeric' });
+  const el = document.getElementById('wiz-period-label');
+  if (el) el.textContent = fmt(d) + ' → ' + fmt(end);
+}
+
+function nextMonday() {
+  const d = new Date();
+  const day = d.getDay();
+  const diff = day === 1 ? 0 : (8 - day) % 7 || 7;
+  d.setDate(d.getDate() + diff);
+  return d.toISOString().slice(0, 10);
+}
+
+function wizRenderPinDots() {
+  const container = document.getElementById('wiz-pin-dots');
+  if (!container) return;
+  let dots = '';
+  for (let i = 0; i < 4; i++) {
+    dots += `<div class="wiz-pin-dot${i < wizPinBuffer.length ? ' filled' : ''}"></div>`;
+  }
+  container.innerHTML = dots;
+  const hint = document.getElementById('wiz-pin-status');
+  if (hint) hint.textContent = wizPinBuffer.length === 4 ? '✓ PIN entered' : 'Tap the box above, then type digits';
+}
+
+function wizHandlePinKey(e) {
+  if (e.key >= '0' && e.key <= '9' && wizPinBuffer.length < 4) {
+    wizPinBuffer.push(e.key); wizRenderPinDots();
+  } else if (e.key === 'Backspace') {
+    wizPinBuffer.pop(); wizRenderPinDots();
+  } else if (e.key === 'Enter' && wizPinBuffer.length === 4) {
+    wizNext();
+  }
+}
+
+function wizSkipEmployee() {
+  wizStep = 4; renderWizStep();
+}
+
+function renderWizStep() {
+  const box = document.getElementById('wiz-box');
+  if (!box) return;
+
+  if (wizStep === 1) {
+    box.innerHTML = `${wizHeader()}
+      <div class="wiz-title">Welcome — let's set up your restaurant.</div>
+      <div class="wiz-sub">This takes about 2 minutes. You can change everything later in Settings.</div>
+      <div class="wiz-err" id="wiz-err"></div>
+      <div class="wiz-field">
+        <label>Restaurant Name</label>
+        <input type="text" id="wiz-rest-name" placeholder="e.g. Chez Marie"
+               autocomplete="organization" value="${escHtml(wizData.name)}"
+               onkeydown="if(event.key==='Enter')wizNext()">
+      </div>
+      <div class="wiz-field">
+        <label>Timezone</label>
+        <select id="wiz-timezone">
+          <option value="America/Montreal"${wizData.timezone==='America/Montreal'?' selected':''}>Eastern — Montréal</option>
+          <option value="America/Toronto"${wizData.timezone==='America/Toronto'?' selected':''}>Eastern — Toronto</option>
+          <option value="America/Winnipeg"${wizData.timezone==='America/Winnipeg'?' selected':''}>Central — Winnipeg</option>
+          <option value="America/Edmonton"${wizData.timezone==='America/Edmonton'?' selected':''}>Mountain — Edmonton</option>
+          <option value="America/Vancouver"${wizData.timezone==='America/Vancouver'?' selected':''}>Pacific — Vancouver</option>
+          <option value="America/Halifax"${wizData.timezone==='America/Halifax'?' selected':''}>Atlantic — Halifax</option>
+          <option value="America/St_Johns"${wizData.timezone==='America/St_Johns'?' selected':''}>Newfoundland</option>
+        </select>
+      </div>
+      <div class="wiz-actions">
+        <button class="wiz-btn-primary" onclick="wizNext()">Continue →</button>
+      </div>`;
+    setTimeout(() => document.getElementById('wiz-rest-name')?.focus(), 60);
+
+  } else if (wizStep === 2) {
+    const anchor = wizData.anchorDate || nextMonday();
+    const d = new Date(anchor + 'T12:00:00');
+    const end = new Date(d); end.setDate(end.getDate() + 13);
+    const fmt = dt => dt.toLocaleDateString('en-CA', { month:'short', day:'numeric', year:'numeric' });
+    box.innerHTML = `${wizHeader()}
+      <div class="wiz-title">Set your pay period.</div>
+      <div class="wiz-sub">Tournant uses bi-weekly pay periods starting on a Monday. Pick the Monday your first period begins.</div>
+      <div class="wiz-err" id="wiz-err"></div>
+      <div class="wiz-field">
+        <label>First Pay Period Starts (Monday)</label>
+        <input type="date" id="wiz-anchor" value="${anchor}" onchange="wizUpdatePeriodPreview()">
+      </div>
+      <div class="wiz-info-box">
+        <div class="wiz-info-row">
+          <span class="wiz-info-key">Period 1</span>
+          <span class="wiz-info-val" id="wiz-period-label">${fmt(d)} → ${fmt(end)}</span>
+        </div>
+        <div class="wiz-info-row">
+          <span class="wiz-info-key">Cadence</span>
+          <span class="wiz-info-val">Bi-weekly · 14 days</span>
+        </div>
+        <div class="wiz-info-row">
+          <span class="wiz-info-key">Day</span>
+          <span class="wiz-info-val">Monday → Sunday</span>
+        </div>
+      </div>
+      <div class="wiz-actions">
+        <button class="wiz-btn-back" onclick="wizBack()">← Back</button>
+        <button class="wiz-btn-primary" onclick="wizNext()">Continue →</button>
+      </div>`;
+
+  } else if (wizStep === 3) {
+    wizPinBuffer = [];
+    box.innerHTML = `${wizHeader()}
+      <div class="wiz-title">Add your first employee.</div>
+      <div class="wiz-sub">They'll use their name and PIN to clock in. You can add more employees in Admin → Employees.</div>
+      <div class="wiz-err" id="wiz-err"></div>
+      <div class="wiz-field">
+        <label>Employee Name</label>
+        <input type="text" id="wiz-emp-name" placeholder="e.g. Théo"
+               value="${escHtml(wizData.empName)}"
+               onkeydown="if(event.key==='Enter')document.getElementById('wiz-pin-hint').focus()">
+      </div>
+      <div class="wiz-field">
+        <label>4-Digit PIN</label>
+        <input type="text" id="wiz-pin-hint"
+               style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none"
+               inputmode="numeric" maxlength="4"
+               onkeydown="wizHandlePinKey(event)">
+        <div id="wiz-pin-dots" class="wiz-pin-row"
+             onclick="document.getElementById('wiz-pin-hint').focus();wizRenderPinDots()">
+          <div class="wiz-pin-dot"></div>
+          <div class="wiz-pin-dot"></div>
+          <div class="wiz-pin-dot"></div>
+          <div class="wiz-pin-dot"></div>
+        </div>
+        <div id="wiz-pin-status" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);text-align:center">
+          Tap the box above, then type digits
+        </div>
+      </div>
+      <div class="wiz-actions">
+        <button class="wiz-btn-back" onclick="wizBack()">← Back</button>
+        <button class="wiz-btn-primary" onclick="wizNext()">Add &amp; Continue →</button>
+      </div>
+      <div style="text-align:center;margin-top:16px">
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);cursor:pointer;border-bottom:1px dashed var(--text3)"
+              onclick="wizSkipEmployee()">Skip — add employees later</span>
+      </div>`;
+    setTimeout(() => document.getElementById('wiz-emp-name')?.focus(), 60);
+
+  } else if (wizStep === 4) {
+    const empLine = wizData.empName
+      ? `<div class="wiz-summary-row"><span class="wiz-summary-key">First Employee</span><span class="wiz-summary-val">${escHtml(wizData.empName)}</span></div>`
+      : '';
+    box.innerHTML = `${wizHeader()}
+      <div class="wiz-done-icon">🎉</div>
+      <div class="wiz-title">You're all set!</div>
+      <div class="wiz-sub">Here's what we set up. You can change any of this in Admin → Settings.</div>
+      <div class="wiz-summary">
+        <div class="wiz-summary-row">
+          <span class="wiz-summary-key">Restaurant</span>
+          <span class="wiz-summary-val">${escHtml(wizData.name || currentRestaurantName)}</span>
+        </div>
+        <div class="wiz-summary-row">
+          <span class="wiz-summary-key">Timezone</span>
+          <span class="wiz-summary-val">${wizData.timezone}</span>
+        </div>
+        <div class="wiz-summary-row">
+          <span class="wiz-summary-key">Pay Period</span>
+          <span class="wiz-summary-val">Bi-weekly from ${wizData.anchorDate || 'not set'}</span>
+        </div>
+        ${empLine}
+      </div>
+      <div class="wiz-actions">
+        <button class="wiz-btn-primary" onclick="hideWizard()">Go to Dashboard →</button>
+      </div>`;
+  }
+}
+
+async function wizNext() {
+  const err = document.getElementById('wiz-err');
+  if (err) err.classList.remove('show');
+
+  if (wizStep === 1) {
+    const name = document.getElementById('wiz-rest-name')?.value.trim();
+    const tz   = document.getElementById('wiz-timezone')?.value || 'America/Montreal';
+    if (!name) { wizShowErr('Please enter your restaurant name.'); return; }
+    wizData.name = name;
+    wizData.timezone = tz;
+    currentRestaurantName = name;
+    currentTimezone = tz;
+    // Save to DB immediately
+    try {
+      const email = currentSession.user?.email || currentSession.email || '';
+      await fetch(SB_URL + '/rest/v1/trn_restaurants?owner_email=eq.' + encodeURIComponent(email), {
+        method: 'PATCH',
+        headers: { 'apikey': SB_ANON, 'Authorization': 'Bearer ' + currentSession.access_token,
+                   'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ name, timezone: tz })
+      });
+      const navEmail = document.getElementById('nav-user-email');
+      if (navEmail) navEmail.textContent = name + ' · ' + email;
+    } catch(e) { console.warn('Wizard step 1 save:', e.message); }
+    wizStep = 2; renderWizStep();
+
+  } else if (wizStep === 2) {
+    const anchor = document.getElementById('wiz-anchor')?.value;
+    if (!anchor) { wizShowErr('Please select a start date.'); return; }
+    const d = new Date(anchor + 'T12:00:00');
+    if (d.getDay() !== 1) { wizShowErr('Pay periods must start on a Monday. Please pick a Monday.'); return; }
+    wizData.anchorDate = anchor;
+    payAnchor = anchor;
+    localStorage.setItem('trn_anchor', anchor);
+    await pushAnchor(anchor);
+    wizStep = 3; renderWizStep();
+
+  } else if (wizStep === 3) {
+    const empName = document.getElementById('wiz-emp-name')?.value.trim();
+    const pin     = wizPinBuffer.join('');
+    if (!empName) { wizShowErr('Enter the employee\'s name.'); return; }
+    if (pin.length !== 4) { wizShowErr('Enter a 4-digit PIN.'); return; }
+    if (employees.find(e => e.pin === pin)) { wizShowErr('That PIN is already in use. Choose a different one.'); return; }
+    const emp = { id: empName.toLowerCase().replace(/\s+/g,'_') + '_' + Date.now(),
+                  name: empName, pin, rate: 0, tipsEligible: true };
+    employees.push(emp);
+    save(); pushEmployees(); refreshSelects(); populateEmpSelect();
+    wizData.empName = empName;
+    wizStep = 4; renderWizStep();
+
+  } else if (wizStep === 4) {
+    hideWizard();
+  }
+}
+
+function wizBack() {
+  if (wizStep > 1) { wizStep--; renderWizStep(); }
 }
 
 // ── PLAN ENFORCEMENT ─────────────────────────────────────────────────────────
@@ -4143,7 +4494,7 @@ async function submitUpgradeInterest() {
   if (!email || !email.includes('@')) { toast('Enter a valid email address', 'err'); return; }
   btn.disabled = true; btn.textContent = 'Saving…';
   try {
-    await sbFetch('r9k_upgrade_requests', {
+    await sbFetch('trn_upgrade_requests', {
       method: 'POST',
       headers: { 'Prefer': 'return=minimal' },
       body: JSON.stringify({ email, restaurant_id: currentRestaurantId })
@@ -4156,12 +4507,41 @@ async function submitUpgradeInterest() {
   }
 }
 
+function applyBranding() {
+  document.documentElement.className =
+    document.documentElement.className.replace(/\btheme-\S+/g, '').trim();
+  document.documentElement.classList.add('theme-' + (currentAccentPreset || 'gold'));
+}
+
+function setAccentPreset(preset) {
+  currentAccentPreset = preset;
+  applyBranding();
+  ['gold','red','green','blue'].forEach(p => {
+    const el = document.getElementById('swatch-' + p);
+    if (el) el.classList.toggle('active', p === preset);
+  });
+  // Save to Supabase settings
+  if (currentRestaurantId) {
+    sbFetch('trn_settings', {
+      method: 'POST',
+      headers: { 'Prefer': 'resolution=merge-duplicates' },
+      body: JSON.stringify({ restaurant_id: currentRestaurantId, key: 'accent_preset', value: preset })
+    }).catch(() => {});
+  }
+  try { localStorage.setItem('trn_accent', preset); } catch(e) {}
+}
+
 // ── SETTINGS PANEL ────────────────────────────────────────────────────────────
 function populateSettingsPanel() {
   const nameEl = document.getElementById('settings-rest-name');
   const tzEl   = document.getElementById('settings-timezone');
   if (nameEl) nameEl.value = currentRestaurantName || '';
   if (tzEl)   tzEl.value   = currentTimezone || 'America/Toronto';
+  // Activate correct color swatch
+  ['gold','red','green','blue'].forEach(p => {
+    const el = document.getElementById('swatch-' + p);
+    if (el) el.classList.toggle('active', p === (currentAccentPreset || 'gold'));
+  });
   _renderBillingCard();
 }
 
@@ -4171,7 +4551,7 @@ async function saveRestaurantSettings() {
   if (!name) { toast('Restaurant name cannot be empty', 'err'); return; }
   try {
     const email = currentSession.user?.email || currentSession.email || '';
-    await fetch(SB_URL + '/rest/v1/r9k_restaurants?owner_email=eq.' + encodeURIComponent(email), {
+    await fetch(SB_URL + '/rest/v1/trn_restaurants?owner_email=eq.' + encodeURIComponent(email), {
       method: 'PATCH',
       headers: { 'apikey': SB_ANON, 'Authorization': 'Bearer ' + currentSession.access_token, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
       body: JSON.stringify({ name, timezone: tz })
@@ -4444,7 +4824,7 @@ function vschedCommit() {
     if(p.action==='remove'){
       shifts=shifts.filter(s=>!(s.date===p.date&&s.employee===p.employee));
       const id=p.date+'_'+p.employee.toLowerCase();
-      sbFetch('r9k_shifts?id=eq.'+encodeURIComponent(id),{method:'DELETE',prefer:'',headers:{'Prefer':''}}).catch(()=>{});
+      sbFetch('trn_shifts?id=eq.'+encodeURIComponent(id),{method:'DELETE',prefer:'',headers:{'Prefer':''}}).catch(()=>{});
     } else {
       shifts=shifts.filter(s=>!(s.date===p.date&&s.employee===p.employee));
       shifts.push({date:p.date,employee:p.employee,start:p.start,end:p.end});
