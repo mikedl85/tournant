@@ -4132,6 +4132,9 @@ function showAtab(id,btn){
 }
 
 // ── ONBOARDING WIZARD ────────────────────────────────────────────────────────
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 const WIZ_TOTAL_STEPS = 4;
 const WIZ_STEP_LABELS = ['Restaurant', 'Pay Period', 'First Employee', 'Done'];
 let wizStep = 1;
